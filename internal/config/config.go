@@ -137,6 +137,7 @@ type SQLGo struct {
 	OutputModelsFileName      string            `json:"output_models_file_name,omitempty" yaml:"output_models_file_name"`
 	OutputQuerierFileName     string            `json:"output_querier_file_name,omitempty" yaml:"output_querier_file_name"`
 	OutputFilesSuffix         string            `json:"output_files_suffix,omitempty" yaml:"output_files_suffix"`
+	QueryParameterLimit       int32             `json:"query_parameter_limit,omitempty" yaml:"query_parameter_limit"`
 }
 
 type SQLKotlin struct {
@@ -152,6 +153,7 @@ type SQLPython struct {
 	Package             string     `json:"package" yaml:"package"`
 	Out                 string     `json:"out" yaml:"out"`
 	Overrides           []Override `json:"overrides,omitempty" yaml:"overrides"`
+	QueryParameterLimit int32      `json:"query_parameter_limit,omitempty" yaml:"query_parameter_limit"`
 }
 
 type Override struct {

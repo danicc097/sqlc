@@ -69,6 +69,7 @@ func pluginPythonCode(s config.SQLPython) *plugin.PythonCode {
 		EmitExactTableNames: s.EmitExactTableNames,
 		EmitSyncQuerier:     s.EmitSyncQuerier,
 		EmitAsyncQuerier:    s.EmitAsyncQuerier,
+		QueryParameterLimit: s.QueryParameterLimit,
 	}
 }
 
@@ -92,6 +93,7 @@ func pluginGoCode(s config.SQLGo) *plugin.GoCode {
 		OutputModelsFileName:      s.OutputModelsFileName,
 		OutputQuerierFileName:     s.OutputQuerierFileName,
 		OutputFilesSuffix:         s.OutputFilesSuffix,
+		QueryParameterLimit:       s.QueryParameterLimit,
 	}
 }
 

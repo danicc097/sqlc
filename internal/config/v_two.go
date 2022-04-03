@@ -50,6 +50,9 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 					return conf, err
 				}
 			}
+			if conf.SQL[j].Gen.Go.QueryParameterLimit == 0 {
+				conf.SQL[j].Gen.Go.QueryParameterLimit = 1
+			}
 		}
 		if conf.SQL[j].Gen.Kotlin != nil {
 			if conf.SQL[j].Gen.Kotlin.Out == "" {
@@ -73,6 +76,9 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 				if err := conf.SQL[j].Gen.Python.Overrides[i].Parse(); err != nil {
 					return conf, err
 				}
+			}
+			if conf.SQL[j].Gen.Python.QueryParameterLimit == 0 {
+				conf.SQL[j].Gen.Python.QueryParameterLimit = 1
 			}
 		}
 	}
