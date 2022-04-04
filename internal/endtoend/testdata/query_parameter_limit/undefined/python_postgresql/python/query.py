@@ -2,6 +2,8 @@
 # versions:
 #   sqlc v1.13.0
 # source: query.sql
+import dataclasses
+
 import sqlalchemy
 import sqlalchemy.ext.asyncio
 
@@ -18,6 +20,12 @@ DELETE FROM bar WHERE id = :p1 AND name = :p2
 """
 
 
+@dataclasses.dataclass()
+class DeleteBarByIDAndNameParams:
+    id: int
+    name: str
+
+
 class Querier:
     def __init__(self, conn: sqlalchemy.engine.Connection):
         self._conn = conn
@@ -26,8 +34,8 @@ class Querier:
         result = self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID), {"p1": id})
         return result.rowcount
 
-    def delete_bar_by_id_and_name(self, *, id: int, name: str) -> int:
-        result = self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID_AND_NAME), {"p1": id, "p2": name})
+    def delete_bar_by_id_and_name(self, arg: DeleteBarByIDAndNameParams) -> int:
+        result = self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID_AND_NAME), {"p1": arg.id, "p2": arg.name})
         return result.rowcount
 
 
@@ -39,6 +47,6 @@ class AsyncQuerier:
         result = await self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID), {"p1": id})
         return result.rowcount
 
-    async def delete_bar_by_id_and_name(self, *, id: int, name: str) -> int:
-        result = await self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID_AND_NAME), {"p1": id, "p2": name})
+    async def delete_bar_by_id_and_name(self, arg: DeleteBarByIDAndNameParams) -> int:
+        result = await self._conn.execute(sqlalchemy.text(DELETE_BAR_BY_ID_AND_NAME), {"p1": arg.id, "p2": arg.name})
         return result.rowcount

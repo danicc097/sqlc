@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"io"
+	"log"
 	"path/filepath"
 
 	yaml "gopkg.in/yaml.v3"
@@ -39,6 +40,10 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 			return conf, ErrMissingEngine
 		}
 		if conf.SQL[j].Gen.Go != nil {
+			log.Default().Printf("conf.SQL[j].Gen.Go.QueryParameterLimit %v", conf.SQL[j].Gen.Go.QueryParameterLimit)
+			if conf.SQL[j].Gen.Go.QueryParameterLimit == 0 {
+				conf.SQL[j].Gen.Go.QueryParameterLimit = 1
+			}
 			if conf.SQL[j].Gen.Go.Out == "" {
 				return conf, ErrNoPackagePath
 			}
@@ -50,9 +55,6 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 					return conf, err
 				}
 			}
-			if conf.SQL[j].Gen.Go.QueryParameterLimit == 0 {
-				conf.SQL[j].Gen.Go.QueryParameterLimit = 1
-			}
 		}
 		if conf.SQL[j].Gen.Kotlin != nil {
 			if conf.SQL[j].Gen.Kotlin.Out == "" {
@@ -63,6 +65,10 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 			}
 		}
 		if conf.SQL[j].Gen.Python != nil {
+			log.Default().Printf("conf.SQL[j].Gen.Python.QueryParameterLimit %v", conf.SQL[j].Gen.Python.QueryParameterLimit)
+			if conf.SQL[j].Gen.Python.QueryParameterLimit == 0 {
+				conf.SQL[j].Gen.Python.QueryParameterLimit = 1
+			}
 			if conf.SQL[j].Gen.Python.Out == "" {
 				return conf, ErrNoOutPath
 			}
@@ -77,9 +83,7 @@ func v2ParseConfig(rd io.Reader) (Config, error) {
 					return conf, err
 				}
 			}
-			if conf.SQL[j].Gen.Python.QueryParameterLimit == 0 {
-				conf.SQL[j].Gen.Python.QueryParameterLimit = 1
-			}
+
 		}
 	}
 	return conf, nil

@@ -399,30 +399,8 @@ func buildQueries(req *plugin.CodeGenRequest, structs []Struct) ([]Query, error)
 			SourceName:   query.Filename,
 		}
 
-		// if len(query.Params) >= 1 && (len(query.Params) < int(req.Settings.Go.QueryParameterLimit) || req.Settings.Go.QueryParameterLimit == -1) {
-		// 	var cols []pyColumn
-		// 	for _, p := range query.Params {
-		// 		cols = append(cols, pyColumn{
-		// 			id:     p.Number,
-		// 			Column: p.Column,
-		// 		})
-		// 	}
-		// 	gq.Args = []QueryValue{{
-		// 		Emit:   true,
-		// 		Name:   "arg",
-		// 		Struct: columnsToStruct(req, query.Name+"Params", cols),
-		// 	}}
-		// } else if len(query.Params) >= 1 {
-		// 	args := make([]QueryValue, 0, len(query.Params))
-		// 	for _, p := range query.Params {
-		// 		args = append(args, QueryValue{
-		// 			Name: paramName(p),
-		// 			Typ:  makePyType(req, p.Column),
-		// 		})
-		// 	}
-		// 	gq.Args = args
-		// }
-		if len(query.Params) > 4 {
+		log.Default().Printf("req.Settings.Python.QueryParameterLimit: %d", req.Settings.Python.QueryParameterLimit)
+		if len(query.Params) > int(req.Settings.Python.QueryParameterLimit) || req.Settings.Python.QueryParameterLimit == -1 {
 			var cols []pyColumn
 			for _, p := range query.Params {
 				cols = append(cols, pyColumn{
@@ -435,7 +413,7 @@ func buildQueries(req *plugin.CodeGenRequest, structs []Struct) ([]Query, error)
 				Name:   "arg",
 				Struct: columnsToStruct(req, query.Name+"Params", cols),
 			}}
-		} else {
+		} else if len(query.Params) <= int(req.Settings.Python.QueryParameterLimit) && req.Settings.Python.QueryParameterLimit != -1 {
 			args := make([]QueryValue, 0, len(query.Params))
 			for _, p := range query.Params {
 				args = append(args, QueryValue{

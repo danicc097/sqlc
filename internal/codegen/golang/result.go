@@ -157,34 +157,6 @@ func buildQueries(req *plugin.CodeGenRequest, structs []Struct) ([]Query, error)
 		}
 		sqlpkg := SQLPackageFromString(req.Settings.Go.SqlPackage)
 
-		// default QueryParameterLimit of 1 should output a param, unless set to -1
-		// if len(query.Params) >= 1 && int(req.Settings.Go.QueryParameterLimit) <= len(query.Params) {
-		// 	p := query.Params[0]
-		// 	gq.Arg = QueryValue{
-		// 		Name:       paramName(p),
-		// 		Typ:        goType(req, p.Column),
-		// 		SQLPackage: sqlpkg,
-		// 	}
-		// } else if len(query.Params) >= 1 && (len(query.Params) < int(req.Settings.Go.QueryParameterLimit) || req.Settings.Go.QueryParameterLimit == -1) {
-		// 	var cols []goColumn
-		// 	for _, p := range query.Params {
-		// 		cols = append(cols, goColumn{
-		// 			id:     int(p.Number),
-		// 			Column: p.Column,
-		// 		})
-		// 	}
-		// 	s, err := columnsToStruct(req, gq.MethodName+"Params", cols, false)
-		// 	if err != nil {
-		// 		return nil, err
-		// 	}
-		// 	gq.Arg = QueryValue{
-		// 		Emit:        true,
-		// 		Name:        "arg",
-		// 		Struct:      s,
-		// 		SQLPackage:  sqlpkg,
-		// 		EmitPointer: req.Settings.Go.EmitParamsStructPointers,
-		// 	}
-		// }
 		if len(query.Params) == 1 {
 			p := query.Params[0]
 			gq.Arg = QueryValue{
