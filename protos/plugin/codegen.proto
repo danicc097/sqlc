@@ -69,6 +69,7 @@ message PythonCode
   string package = 4;
   string out = 5;
   repeated string exclude_table_names = 6;
+  int32 query_parameter_limit = 7;
 }
 
 message KotlinCode

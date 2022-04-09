@@ -63,6 +63,10 @@ func pluginSettings(cs config.CombinedSettings) *plugin.Settings {
 }
 
 func pluginPythonCode(s config.SQLPython) *plugin.PythonCode {
+	var qpl int32
+	if s.QueryParameterLimit != nil {
+		qpl = *s.QueryParameterLimit
+	}
 	return &plugin.PythonCode{
 		Out:                 s.Out,
 		Package:             s.Package,
@@ -70,6 +74,7 @@ func pluginPythonCode(s config.SQLPython) *plugin.PythonCode {
 		EmitSyncQuerier:     s.EmitSyncQuerier,
 		EmitAsyncQuerier:    s.EmitAsyncQuerier,
 		ExcludeTableNames:   s.ExcludeTableNames,
+		QueryParameterLimit: qpl,
 	}
 }
 

@@ -83,7 +83,9 @@ func v1ParseConfig(rd io.Reader) (Config, error) {
 		if settings.Packages[j].Engine == "" {
 			settings.Packages[j].Engine = EnginePostgreSQL
 		}
+
 	}
+
 	return settings.Translate(), nil
 }
 

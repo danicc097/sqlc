@@ -77,6 +77,8 @@ const (
 	EngineXLemon Engine = "_lemon"
 )
 
+var defaultQueryParameterLimit int32 = 1
+
 type Config struct {
 	Version string  `json:"version" yaml:"version"`
 	Project Project `json:"project" yaml:"project"`
@@ -155,6 +157,7 @@ type SQLPython struct {
 	Out                 string     `json:"out" yaml:"out"`
 	Overrides           []Override `json:"overrides,omitempty" yaml:"overrides"`
 	ExcludeTableNames   []string   `json:"exclude_table_names,omitempty" yaml:"exclude_table_names"`
+	QueryParameterLimit *int32     `json:"query_parameter_limit,omitempty" yaml:"query_parameter_limit"`
 }
 
 type Override struct {
@@ -311,6 +314,7 @@ var ErrNoPackageName = errors.New("missing package name")
 var ErrNoPackagePath = errors.New("missing package path")
 var ErrNoOutPath = errors.New("no output path")
 var ErrNoQuerierType = errors.New("no querier emit type enabled")
+var ErrInvalidQueryParameterLimit = errors.New("invalid query parameter limit")
 
 func ParseConfig(rd io.Reader) (Config, error) {
 	var buf bytes.Buffer
