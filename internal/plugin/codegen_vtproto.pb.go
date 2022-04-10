@@ -433,6 +433,7 @@ func (m *PythonCode) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		i -= len(m.unknownFields)
 		copy(dAtA[i:], m.unknownFields)
 	}
+<<<<<<< HEAD
 	if m.QueryParameterLimit != 0 {
 		i = encodeVarint(dAtA, i, uint64(m.QueryParameterLimit))
 		i--
@@ -446,6 +447,17 @@ func (m *PythonCode) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 			i--
 			dAtA[i] = 0x32
 		}
+=======
+	if m.UsePydanticModels {
+		i--
+		if m.UsePydanticModels {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x30
+>>>>>>> pydantic-models-config-field
 	}
 	if len(m.Out) > 0 {
 		i -= len(m.Out)
@@ -1731,6 +1743,7 @@ func (m *PythonCode) SizeVT() (n int) {
 	if l > 0 {
 		n += 1 + l + sov(uint64(l))
 	}
+<<<<<<< HEAD
 	if len(m.ExcludeTableNames) > 0 {
 		for _, s := range m.ExcludeTableNames {
 			l = len(s)
@@ -1739,6 +1752,10 @@ func (m *PythonCode) SizeVT() (n int) {
 	}
 	if m.QueryParameterLimit != 0 {
 		n += 1 + sov(uint64(m.QueryParameterLimit))
+=======
+	if m.UsePydanticModels {
+		n += 2
+>>>>>>> pydantic-models-config-field
 	}
 	if m.unknownFields != nil {
 		n += len(m.unknownFields)
@@ -3501,6 +3518,7 @@ func (m *PythonCode) UnmarshalVT(dAtA []byte) error {
 			m.Out = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 6:
+<<<<<<< HEAD
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ExcludeTableNames", wireType)
 			}
@@ -3537,6 +3555,12 @@ func (m *PythonCode) UnmarshalVT(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field QueryParameterLimit", wireType)
 			}
 			m.QueryParameterLimit = 0
+=======
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UsePydanticModels", wireType)
+			}
+			var v int
+>>>>>>> pydantic-models-config-field
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflow
@@ -3546,11 +3570,19 @@ func (m *PythonCode) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
+<<<<<<< HEAD
 				m.QueryParameterLimit |= int32(b&0x7F) << shift
+=======
+				v |= int(b&0x7F) << shift
+>>>>>>> pydantic-models-config-field
 				if b < 0x80 {
 					break
 				}
 			}
+<<<<<<< HEAD
+=======
+			m.UsePydanticModels = bool(v != 0)
+>>>>>>> pydantic-models-config-field
 		default:
 			iNdEx = preIndex
 			skippy, err := skip(dAtA[iNdEx:])

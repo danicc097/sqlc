@@ -70,6 +70,7 @@ message PythonCode
   string out = 5;
   repeated string exclude_table_names = 6;
   int32 query_parameter_limit = 7;
+  bool use_pydantic_models = 8;
 }
 
 message KotlinCode

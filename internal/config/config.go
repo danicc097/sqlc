@@ -158,6 +158,7 @@ type SQLPython struct {
 	Overrides           []Override `json:"overrides,omitempty" yaml:"overrides"`
 	ExcludeTableNames   []string   `json:"exclude_table_names,omitempty" yaml:"exclude_table_names"`
 	QueryParameterLimit *int32     `json:"query_parameter_limit,omitempty" yaml:"query_parameter_limit"`
+	UsePydanticModels   bool       `json:"use_pydantic_models,omitempty" yaml:"use_pydantic_models"`
 }
 
 type Override struct {

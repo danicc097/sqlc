@@ -75,6 +75,7 @@ func pluginPythonCode(s config.SQLPython) *plugin.PythonCode {
 		EmitAsyncQuerier:    s.EmitAsyncQuerier,
 		ExcludeTableNames:   s.ExcludeTableNames,
 		QueryParameterLimit: qpl,
+		UsePydanticModels:   s.UsePydanticModels,
 	}
 }
 
