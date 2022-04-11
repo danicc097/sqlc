@@ -433,6 +433,16 @@ func (m *PythonCode) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		i -= len(m.unknownFields)
 		copy(dAtA[i:], m.unknownFields)
 	}
+	if m.EmitPydanticModels {
+		i--
+		if m.EmitPydanticModels {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x48
+	}
 	if m.UsePydanticModels {
 		i--
 		if m.UsePydanticModels {
@@ -1751,6 +1761,9 @@ func (m *PythonCode) SizeVT() (n int) {
 		n += 1 + sov(uint64(m.QueryParameterLimit))
 	}
 	if m.UsePydanticModels {
+		n += 2
+	}
+	if m.EmitPydanticModels {
 		n += 2
 	}
 	if m.unknownFields != nil {
@@ -3584,6 +3597,26 @@ func (m *PythonCode) UnmarshalVT(dAtA []byte) error {
 				}
 			}
 			m.UsePydanticModels = bool(v != 0)
+		case 9:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EmitPydanticModels", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.EmitPydanticModels = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skip(dAtA[iNdEx:])

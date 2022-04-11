@@ -1,2 +1,6 @@
 /.idea/
+<<<<<<< HEAD
 .vscode
+=======
+__pycache__
+>>>>>>> pydantic-models-config-field
