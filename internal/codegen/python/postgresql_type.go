@@ -20,7 +20,7 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 	case "boolean", "bool", "pg_catalog.bool":
 		return "bool"
 	case "json", "jsonb":
-		return "Any"
+		return "dict"
 	case "bytea", "blob", "pg_catalog.bytea":
 		return "memoryview"
 	case "date":
