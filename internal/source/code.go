@@ -86,24 +86,33 @@ func Mutate(raw string, a []Edit) (string, error) {
 func StripComments(sql string) (string, []string, error) {
 	s := bufio.NewScanner(strings.NewReader(strings.TrimSpace(sql)))
 	var lines, comments []string
+	var nameFound, queryStarted bool
 	for s.Scan() {
 		t := s.Text()
-		if strings.HasPrefix(t, "-- name:") {
+
+		if (strings.HasPrefix(t, "/* name:") && strings.HasSuffix(t, "*/")) ||
+			strings.HasPrefix(t, "-- name:") ||
+			strings.HasPrefix(t, "# name:") {
+			nameFound = true
 			continue
 		}
-		if strings.HasPrefix(t, "/* name:") && strings.HasSuffix(t, "*/") {
+		if !nameFound {
 			continue
 		}
-		if strings.HasPrefix(t, "--") {
-			comments = append(comments, strings.TrimPrefix(t, "--"))
-			continue
+		if !queryStarted {
+			if strings.HasPrefix(t, "--") {
+				comments = append(comments, strings.TrimPrefix(t, "--"))
+				continue
+			}
+			if strings.HasPrefix(t, "/*") && strings.HasSuffix(t, "*/") {
+				t = strings.TrimPrefix(t, "/*")
+				t = strings.TrimSuffix(t, "*/")
+				comments = append(comments, t)
+				continue
+			}
+			queryStarted = true
 		}
-		if strings.HasPrefix(t, "/*") && strings.HasSuffix(t, "*/") {
-			t = strings.TrimPrefix(t, "/*")
-			t = strings.TrimSuffix(t, "*/")
-			comments = append(comments, t)
-			continue
-		}
+
 		lines = append(lines, t)
 	}
 	return strings.Join(lines, "\n"), comments, s.Err()
