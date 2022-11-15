@@ -6,7 +6,7 @@ import (
 	"os"
 	"runtime/trace"
 
-	"github.com/kyleconroy/sqlc/internal/debug"
+	"github.com/danicc097/sqlc/internal/debug"
 )
 
 func Start(base context.Context) (context.Context, func(), error) {

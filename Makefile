@@ -50,7 +50,7 @@ proto: internal/plugin/codegen.pb.go
 internal/plugin/codegen.pb.go: protos/plugin/codegen.proto
 	protoc -I ./protos \
 		--go_out=. \
-		--go_opt=module=github.com/kyleconroy/sqlc \
+		--go_opt=module=github.com/danicc097/sqlc \
 		--go-vtproto_out=. \
-		--go-vtproto_opt=module=github.com/kyleconroy/sqlc,features=marshal+unmarshal+size \
+		--go-vtproto_opt=module=github.com/danicc097/sqlc,features=marshal+unmarshal+size \
 		./protos/plugin/codegen.proto

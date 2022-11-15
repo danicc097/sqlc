@@ -5,7 +5,7 @@
 package override
 
 import (
-	"github.com/kyleconroy/sqlc-testdata/pkg"
+	"github.com/danicc097/sqlc-testdata/pkg"
 	"github.com/lib/pq"
 )
 

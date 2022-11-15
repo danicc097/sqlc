@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kyleconroy/sqlc/internal/config"
-	"github.com/kyleconroy/sqlc/internal/sql/sqlpath"
+	"github.com/danicc097/sqlc/internal/config"
+	"github.com/danicc097/sqlc/internal/sql/sqlpath"
 )
 
 func writeInputs(w *multipart.Writer, file string, conf *config.Config) error {
@@ -26,7 +26,7 @@ func writeInputs(w *multipart.Writer, file string, conf *config.Config) error {
 		}
 	}
 
-	for file, _ := range refs {
+	for file := range refs {
 		if err := addPart(w, file); err != nil {
 			return err
 		}

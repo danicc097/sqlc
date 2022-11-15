@@ -4,12 +4,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kyleconroy/sqlc/internal/sql/catalog"
+	"github.com/danicc097/sqlc/internal/sql/catalog"
 
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
-	"github.com/kyleconroy/sqlc/internal/sql/astutils"
-	"github.com/kyleconroy/sqlc/internal/sql/lang"
-	"github.com/kyleconroy/sqlc/internal/sql/sqlerr"
+	"github.com/danicc097/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/sql/astutils"
+	"github.com/danicc097/sqlc/internal/sql/lang"
+	"github.com/danicc097/sqlc/internal/sql/sqlerr"
 )
 
 // OutputColumns determines which columns a statement will output

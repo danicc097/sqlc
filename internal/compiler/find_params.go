@@ -3,8 +3,8 @@ package compiler
 import (
 	"fmt"
 
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
-	"github.com/kyleconroy/sqlc/internal/sql/astutils"
+	"github.com/danicc097/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/sql/astutils"
 )
 
 func findParameters(root ast.Node) ([]paramRef, error) {
@@ -39,15 +39,13 @@ type paramSearch struct {
 	limitOffset ast.Node
 }
 
-type limitCount struct {
-}
+type limitCount struct{}
 
 func (l *limitCount) Pos() int {
 	return 0
 }
 
-type limitOffset struct {
-}
+type limitOffset struct{}
 
 func (l *limitOffset) Pos() int {
 	return 0

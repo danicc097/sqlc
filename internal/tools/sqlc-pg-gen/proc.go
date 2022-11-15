@@ -61,7 +61,7 @@ func (p *Proc) Args() []Arg {
 		})
 	}
 
-	// Some manual changes until https://github.com/kyleconroy/sqlc/pull/1748
+	// Some manual changes until https://github.com/danicc097/sqlc/pull/1748
 	// can be completely implmented
 	if p.Name == "mode" {
 		return nil

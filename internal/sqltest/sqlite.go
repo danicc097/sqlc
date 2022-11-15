@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/kyleconroy/sqlc/internal/sql/sqlpath"
+	"github.com/danicc097/sqlc/internal/sql/sqlpath"
 
 	_ "github.com/mattn/go-sqlite3"
 )

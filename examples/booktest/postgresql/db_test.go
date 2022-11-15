@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kyleconroy/sqlc/internal/sqltest"
+	"github.com/danicc097/sqlc/internal/sqltest"
 )
 
 func TestBooks(t *testing.T) {
@@ -153,5 +153,4 @@ func TestBooks(t *testing.T) {
 	if err := dq.DeleteBook(ctx, b5.BookID); err != nil {
 		t.Fatal(err)
 	}
-
 }

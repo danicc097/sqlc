@@ -3,7 +3,7 @@ package astutils
 import (
 	"fmt"
 
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 type Visitor interface {

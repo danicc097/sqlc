@@ -3,12 +3,12 @@ package cmd
 import (
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/compiler"
-	"github.com/kyleconroy/sqlc/internal/config"
-	"github.com/kyleconroy/sqlc/internal/config/convert"
-	"github.com/kyleconroy/sqlc/internal/info"
-	"github.com/kyleconroy/sqlc/internal/plugin"
-	"github.com/kyleconroy/sqlc/internal/sql/catalog"
+	"github.com/danicc097/sqlc/internal/compiler"
+	"github.com/danicc097/sqlc/internal/config"
+	"github.com/danicc097/sqlc/internal/config/convert"
+	"github.com/danicc097/sqlc/internal/info"
+	"github.com/danicc097/sqlc/internal/plugin"
+	"github.com/danicc097/sqlc/internal/sql/catalog"
 )
 
 func pluginOverride(o config.Override) *plugin.Override {
@@ -86,7 +86,7 @@ func pluginGoCode(s config.SQLGo) *plugin.GoCode {
 		EmitResultStructPointers:    s.EmitResultStructPointers,
 		EmitParamsStructPointers:    s.EmitParamsStructPointers,
 		EmitMethodsWithDbArgument:   s.EmitMethodsWithDBArgument,
-    EmitPointersForNullTypes:  s.EmitPointersForNullTypes,
+		EmitPointersForNullTypes:    s.EmitPointersForNullTypes,
 		EmitEnumValidMethod:         s.EmitEnumValidMethod,
 		EmitAllEnumValues:           s.EmitAllEnumValues,
 		JsonTagsCaseStyle:           s.JSONTagsCaseStyle,

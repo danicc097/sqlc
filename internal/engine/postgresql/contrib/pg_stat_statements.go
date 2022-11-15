@@ -3,8 +3,8 @@
 package contrib
 
 import (
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
-	"github.com/kyleconroy/sqlc/internal/sql/catalog"
+	"github.com/danicc097/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/sql/catalog"
 )
 
 var funcsPgStatStatements = []*catalog.Function{

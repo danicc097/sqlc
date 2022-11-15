@@ -7,16 +7,15 @@ import (
 	"errors"
 	"io"
 
-	"github.com/kyleconroy/sqlc/internal/metadata"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/metadata"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 func NewParser() *Parser {
 	return &Parser{}
 }
 
-type Parser struct {
-}
+type Parser struct{}
 
 func (p *Parser) Parse(r io.Reader) ([]ast.Statement, error) {
 	return nil, errors.New("the PostgreSQL engine does not support Windows")

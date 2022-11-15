@@ -1,11 +1,10 @@
--- https://github.com/kyleconroy/sqlc/issues/1198
+-- https://github.com/danicc097/sqlc/issues/1198
 CREATE TABLE authors (
-  id   INT PRIMARY KEY,
+  id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  bio  text
+  bio text
 );
-
 -- name: SetAuthor :exec
-UPDATE  authors
-SET     name = ?
-WHERE   id = ?
+UPDATE authors
+SET name = ?
+WHERE id = ?

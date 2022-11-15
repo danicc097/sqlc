@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/pattern"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/pattern"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 type Override struct {
@@ -14,7 +14,7 @@ type Override struct {
 	GoType GoType `json:"go_type" yaml:"go_type"`
 
 	// additional Go struct tags to add to this field, in raw Go struct tag form, e.g. `validate:"required" x:"y,z"`
-	// see https://github.com/kyleconroy/sqlc/issues/534
+	// see https://github.com/danicc097/sqlc/issues/534
 	GoStructTag GoStructTag `json:"go_struct_tag" yaml:"go_struct_tag"`
 
 	// fully qualified name of the Go type, e.g. `github.com/segmentio/ksuid.KSUID`
@@ -79,7 +79,6 @@ func (o *Override) Matches(n *ast.TableName, defaultSchema string) bool {
 }
 
 func (o *Override) Parse() (err error) {
-
 	// validate deprecated postgres_type field
 	if o.Deprecated_PostgresType != "" {
 		fmt.Fprintf(os.Stderr, "WARNING: \"postgres_type\" is deprecated. Instead, use \"db_type\" to specify a type override.\n")

@@ -5,8 +5,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/metadata"
-	"github.com/kyleconroy/sqlc/internal/plugin"
+	"github.com/danicc097/sqlc/internal/metadata"
+	"github.com/danicc097/sqlc/internal/plugin"
 )
 
 type fileImports struct {
@@ -187,13 +187,13 @@ func buildImports(settings *plugin.Settings, queries []Query, uses func(string) 
 		}
 	}
 
-	for typeName, _ := range pgtypeTypes {
+	for typeName := range pgtypeTypes {
 		if uses(typeName) {
 			pkg[ImportSpec{Path: "github.com/jackc/pgtype"}] = struct{}{}
 		}
 	}
 
-	for typeName, _ := range pqtypeTypes {
+	for typeName := range pqtypeTypes {
 		if uses(typeName) {
 			pkg[ImportSpec{Path: "github.com/tabbed/pqtype"}] = struct{}{}
 		}

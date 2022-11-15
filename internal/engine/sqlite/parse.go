@@ -7,9 +7,9 @@ import (
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 
-	"github.com/kyleconroy/sqlc/internal/engine/sqlite/parser"
-	"github.com/kyleconroy/sqlc/internal/metadata"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/engine/sqlite/parser"
+	"github.com/danicc097/sqlc/internal/metadata"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 type errorListener struct {
@@ -35,8 +35,7 @@ func NewParser() *Parser {
 	return &Parser{}
 }
 
-type Parser struct {
-}
+type Parser struct{}
 
 func (p *Parser) Parse(r io.Reader) ([]ast.Statement, error) {
 	blob, err := io.ReadAll(r)

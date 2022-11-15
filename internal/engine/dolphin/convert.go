@@ -10,8 +10,8 @@ import (
 	driver "github.com/pingcap/tidb/parser/test_driver"
 	"github.com/pingcap/tidb/parser/types"
 
-	"github.com/kyleconroy/sqlc/internal/debug"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/debug"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 type cc struct {
@@ -539,7 +539,6 @@ func (c *cc) convertCommonTableExpression(n *pcast.CommonTableExpression) *ast.C
 		Ctequery:    c.convert(n.Query),
 		Ctecolnames: columns,
 	}
-
 }
 
 func (c *cc) convertWithClause(n *pcast.WithClause) *ast.WithClause {
@@ -1161,22 +1160,24 @@ func (c *cc) convertSetOprType(n *pcast.SetOprType) (op ast.SetOperation, all bo
 // into a tree. It is called for UNION, INTERSECT or EXCLUDE operation.
 //
 // Given an union with the following nodes:
-//     [Select{1}, Select{2}, Select{3}, Select{4}]
+//
+//	[Select{1}, Select{2}, Select{3}, Select{4}]
 //
 // The function will return:
-//     Select{
-//         Larg: Select{
-//             Larg: Select{
-//                 Larg: Select{1},
-//                 Rarg: Select{2},
-//                 Op: Union
-//             },
-//             Rarg: Select{3},
-//             Op: Union,
-//         },
-//         Rarg: Select{4},
-//         Op: Union,
-//     }
+//
+//	Select{
+//	    Larg: Select{
+//	        Larg: Select{
+//	            Larg: Select{1},
+//	            Rarg: Select{2},
+//	            Op: Union
+//	        },
+//	        Rarg: Select{3},
+//	        Op: Union,
+//	    },
+//	    Rarg: Select{4},
+//	    Op: Union,
+//	}
 func (c *cc) convertSetOprSelectList(n *pcast.SetOprSelectList) ast.Node {
 	selectStmts := make([]*ast.SelectStmt, len(n.Selects))
 	for i, node := range n.Selects {

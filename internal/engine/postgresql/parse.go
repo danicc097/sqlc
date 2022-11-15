@@ -11,8 +11,8 @@ import (
 
 	nodes "github.com/pganalyze/pg_query_go/v2"
 
-	"github.com/kyleconroy/sqlc/internal/metadata"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/metadata"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 func stringSlice(list *nodes.List) []string {
@@ -146,8 +146,7 @@ func NewParser() *Parser {
 	return &Parser{}
 }
 
-type Parser struct {
-}
+type Parser struct{}
 
 var errSkip = errors.New("skip stmt")
 
@@ -218,7 +217,6 @@ func translate(node *nodes.Node) (ast.Node, error) {
 	case *nodes.Node_AlterObjectSchemaStmt:
 		n := inner.AlterObjectSchemaStmt
 		switch n.ObjectType {
-
 		case nodes.ObjectType_OBJECT_TABLE:
 			rel := parseRelationFromRangeVar(n.Relation)
 			return &ast.AlterTableSetSchemaStmt{

@@ -7,9 +7,9 @@ import (
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 
-	"github.com/kyleconroy/sqlc/internal/debug"
-	"github.com/kyleconroy/sqlc/internal/engine/sqlite/parser"
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/debug"
+	"github.com/danicc097/sqlc/internal/engine/sqlite/parser"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 type cc struct {
@@ -270,7 +270,7 @@ func (c *cc) convertMultiSelect_stmtContext(n *parser.Select_stmtContext) ast.No
 	var tables []ast.Node
 	var cols []ast.Node
 	var where ast.Node
-	var groups = []ast.Node{}
+	groups := []ast.Node{}
 	var having ast.Node
 
 	for _, icore := range n.AllSelect_core() {

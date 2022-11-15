@@ -1,7 +1,7 @@
 package catalog
 
 import (
-	"github.com/kyleconroy/sqlc/internal/sql/ast"
+	"github.com/danicc097/sqlc/internal/sql/ast"
 )
 
 // Catalog describes a database instance consisting of metadata in which database objects are defined
@@ -19,7 +19,6 @@ type Catalog struct {
 
 // New creates a new catalog
 func New(defaultSchema string) *Catalog {
-
 	newCatalog := &Catalog{
 		DefaultSchema: defaultSchema,
 		Schemas:       make([]*Schema, 0),
