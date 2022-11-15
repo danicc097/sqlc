@@ -2,6 +2,8 @@ module github.com/kyleconroy/sqlc
 
 go 1.19
 
+replace github.com/kyleconroy/sqlc => ./
+
 require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20220626175859-9abda183db8e
 	github.com/bytecodealliance/wasmtime-go v1.0.0
