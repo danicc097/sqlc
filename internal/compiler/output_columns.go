@@ -470,6 +470,10 @@ func outputColumnRefs(res *ast.ResTarget, tables []*Table, node *ast.ColumnRef) 
 	case len(parts) == 2:
 		alias = parts[0]
 		name = parts[1]
+	// handle other schemas
+	case len(parts) == 3:
+		alias = parts[1]
+		name = parts[2]
 	default:
 		return nil, fmt.Errorf("unknown number of fields: %d", len(parts))
 	}
