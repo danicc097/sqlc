@@ -200,9 +200,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "[]byte"
 
 	case "date":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.Date"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.Date"
+		// }
 		if notNull {
 			return "time.Time"
 		}
@@ -212,9 +212,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "sql.NullTime"
 
 	case "pg_catalog.time":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.Time"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.Time"
+		// }
 		if notNull {
 			return "time.Time"
 		}
@@ -233,9 +233,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "sql.NullTime"
 
 	case "pg_catalog.timestamp":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.Timestamp"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.Timestamp"
+		// }
 		if notNull {
 			return "time.Time"
 		}
@@ -245,9 +245,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "sql.NullTime"
 
 	case "pg_catalog.timestamptz", "timestamptz":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.Timestamptz"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.Timestamptz"
+		// }
 		if notNull {
 			return "time.Time"
 		}
@@ -269,9 +269,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "sql.NullString"
 
 	case "uuid":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.UUID"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.UUID"
+		// }
 		if notNull {
 			return "uuid.UUID"
 		}
@@ -340,9 +340,9 @@ func postgresType(req *plugin.CodeGenRequest, col *plugin.Column) string {
 		return "sql.NullString"
 
 	case "interval", "pg_catalog.interval":
-		if driver == SQLDriverPGXV5 {
-			return "pgtype.Interval"
-		}
+		// if driver == SQLDriverPGXV5 {
+		// 	return "pgtype.Interval"
+		// }
 
 		if notNull {
 			return "int64"
