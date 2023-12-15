@@ -272,6 +272,7 @@ func buildQueries(req *plugin.GenerateRequest, options *opts.Options, structs []
 					sameType := f.Type == goType(req, options, c)
 					sameTable := sdk.SameTableName(c.Table, s.Table, req.Catalog.DefaultSchema)
 					if !sameName || !sameType || !sameTable {
+						// NOTE: check against options.Overrides when overrides also supports tables
 						same = false
 					}
 				}
